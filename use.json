@@ -1,0 +1,4 @@
+{
+  "namespace": "db-config",
+  "use_index": "plugin-index.js"
+}

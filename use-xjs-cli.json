@@ -1,0 +1,10 @@
+{
+  "dev": {
+    "main": "tests/server.ts",
+    "start_cron": "npx ts-node",
+    "start_server": "npx ts-node-dev --respawn --transpile-only",
+    "start_console": "npx ts-node",
+    "jobs_path": "tests/backend/jobs"
+  }
+}
+
