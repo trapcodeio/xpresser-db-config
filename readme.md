@@ -67,7 +67,6 @@ const {getConfig, setConfig, setConfigs} = require("xpresser-db-config");
 getConfig('app.name'); // App Name
 getConfig('app.slogan'); // App Slogan
 
-
 await setConfig('app.name', "New Name");
 await setConfigs({
   'cronjobs': true,
