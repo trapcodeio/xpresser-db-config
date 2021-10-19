@@ -7,7 +7,7 @@ application.
 
 This plugin makes that process easy for you.
 
-- Any Database
+- Provide driver to use any Database.
 - Autoload configs in memory
 - AutoUpdate configs in realtime with changes.
 - Provide access functions to get configs.
@@ -68,8 +68,4 @@ getConfig('app.name'); // App Name
 getConfig('app.slogan'); // App Slogan
 
 await setConfig('app.name', "New Name");
-await setConfigs({
-  'cronjobs': true,
-  'app.name': "New Name"
-});
 ```
