@@ -3,4 +3,5 @@ node_modules
 tests
 
 *.ts
+!*.d.ts
 use-xjs-cli.json
