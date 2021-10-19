@@ -18,12 +18,13 @@ export function ConvertToDBData(configs: DBConfiguration) {
         const entries = Object.entries(children);
 
         for (const [key, value] of entries) {
+            // noinspection PointlessBooleanExpressionJS
             dbData.push({
                 group,
                 key,
                 value,
                 type: kindOf(value),
-                autoload
+                autoload: !!autoload
             });
         }
     }
