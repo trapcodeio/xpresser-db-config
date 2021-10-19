@@ -3,6 +3,6 @@
   "namespace": "db-config",
   "use_index": "plugin-index.js",
   "paths": {
-    "commands": "Commands"
+    "commands": "commands"
   }
 }
