@@ -1,6 +1,5 @@
 .idea
 node_modules
-tests
 
 *.d.ts
 *.js

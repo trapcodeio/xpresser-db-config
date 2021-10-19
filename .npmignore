@@ -1,0 +1,6 @@
+.idea
+node_modules
+tests
+
+*.ts
+use-xjs-cli.json

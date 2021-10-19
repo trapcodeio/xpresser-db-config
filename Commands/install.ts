@@ -1,7 +1,7 @@
 import { DollarSign } from "xpresser/types";
-import DbConfig from "../src/DbConfig";
-import { DBConfiguration } from "../src/custom-types";
-import { ConvertToDBData } from "../src/Converters";
+import { DbConfig } from "../src/DbConfig";
+import type { DBConfiguration } from "../src/custom-types";
+import { ConvertToDBData } from "../src/functions";
 
 export = async (args: string[], { helper }: any) => {
     const $: DollarSign = helper.$;
@@ -26,7 +26,7 @@ export = async (args: string[], { helper }: any) => {
      * Try loading db config file.
      */
     try {
-        dbConfig = require(dbConfigFile);
+        dbConfig = dbConfig.concat(require(dbConfigFile));
     } catch (e: any) {
         return $.logErrorAndExit(e.message);
     }

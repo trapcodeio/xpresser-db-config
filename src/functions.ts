@@ -1,14 +1,6 @@
-import { DBConfiguration } from "./custom-types";
+import type { DBConfiguration, DbDataArray } from "./custom-types";
 import kindOf from "kind-of";
 import { Obj } from "object-collection/exports";
-
-export type DbData = Array<{
-    group?: string;
-    key: string;
-    value: any;
-    type: string;
-    autoload?: boolean;
-}>;
 
 /**
  *
@@ -18,7 +10,7 @@ export type DbData = Array<{
 export function ConvertToDBData(configs: DBConfiguration) {
     if (!Array.isArray(configs)) throw new Error(`Db config file must return an array!`);
 
-    const dbData: DbData = [];
+    const dbData: DbDataArray = [];
 
     for (const config of configs) {
         let { group, config: children, autoload } = config;
@@ -44,7 +36,7 @@ export function ConvertToDBData(configs: DBConfiguration) {
  * @param dbData
  * @constructor
  */
-export function ConvertDbDataToObject(dbData: DbData) {
+export function ConvertDbDataToObject(dbData: DbDataArray) {
     const data = Obj({});
 
     for (const d of dbData) {

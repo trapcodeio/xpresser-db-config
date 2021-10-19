@@ -1,7 +1,10 @@
-import { DbData } from "./Converters";
-import { DollarSign } from "xpresser/types";
+// noinspection JSUnusedLocalSymbols
 
-class DbConfig {
+import type { DbDataArray } from "./custom-types";
+
+export type GetConfigQuery = { group?: string; key: string };
+
+export class DbConfig {
     /**
      * AutoLoaded Data Getter.
      */
@@ -9,16 +12,20 @@ class DbConfig {
         return undefined;
     }
 
-    static async addConfig(data: DbData): Promise<boolean | undefined> {
+    static async addConfig(data: DbDataArray): Promise<boolean | undefined> {
         // save to your db
         return undefined;
     }
 
-    // static async updateConfig(data: DBConfiguration): Promise<>
-    static onBoot(next: () => void, $: DollarSign) {
-        $.engineData.set("DbConfigClass", this);
-        return next();
+    static async getConfig<R = any>(query: GetConfigQuery): Promise<R | undefined> {
+        return undefined;
+    }
+
+    static async setConfig(query: GetConfigQuery, value: any): Promise<any> {
+        return undefined;
+    }
+
+    static async getGroup<R = any>(group: string): Promise<Array<R> | undefined> {
+        return [];
     }
 }
-
-export = DbConfig;
