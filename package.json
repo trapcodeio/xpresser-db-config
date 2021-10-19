@@ -1,6 +1,6 @@
 {
   "name": "xpresser-db-config",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Database config loader for xpresserjs",
   "main": "index.js",
   "repository": "https://github.com/trapcodeio/xpresser-db-config.git",
