@@ -7,15 +7,23 @@
   "scripts": {
     "prepublishOnly": "npx tsc",
     "watch": "npx tsc --watch",
-    "test": "cd tests && npx ts-node-dev --respawn server.ts"
+    "test": "cd tests && npx ts-node-dev --respawn server.ts",
+    "play": "cd tests && npx ts-node-dev --respawn play.ts"
   },
   "author": "trapcodeio",
   "license": "MIT",
   "devDependencies": {
+    "@types/kind-of": "^6.0.0",
+    "@xpresser/xpress-mongo": "^1.1.5",
     "prettier": "^2.4.1",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.4.4",
     "xjs-cli": "^0.4.2",
-    "xpresser": "^0.22.3"
+    "xpress-mongo": "^2.0.11",
+    "xpresser": "^0.23.2"
+  },
+  "dependencies": {
+    "kind-of": "^6.0.3",
+    "object-collection": "^2.0.0"
   }
 }

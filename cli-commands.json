@@ -1,0 +1,7 @@
+[
+  {
+    "command": "dbconfig:install",
+    "description": "Install Database Config",
+    "file": "install.js"
+  }
+]

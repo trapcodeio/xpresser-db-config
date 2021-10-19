@@ -5,6 +5,9 @@
     "start_server": "npx ts-node-dev --respawn --transpile-only",
     "start_console": "npx ts-node",
     "jobs_path": "tests/backend/jobs"
-  }
+  },
+  "extensions": [
+    "./"
+  ]
 }
 

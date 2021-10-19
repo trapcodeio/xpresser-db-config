@@ -1,4 +1,8 @@
 {
+  "xpresser": ">=0.23.2",
   "namespace": "db-config",
-  "use_index": "plugin-index.js"
+  "use_index": "plugin-index.js",
+  "paths": {
+    "commands": "Commands"
+  }
 }
