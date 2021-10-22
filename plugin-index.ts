@@ -66,7 +66,9 @@ export function run({ namespace }: any, $: DollarSign) {
         $.engineData.set("AutoLoadedDbConfigRaw", autoLoaded);
         $.engineData.set("AutoLoadedDbConfig", ConvertDbDataToObject(autoLoaded));
 
-        $.logSuccess("AutoLoaded DbConfig successfully.");
+        $.ifNotConsole(() => {
+            $.logSuccess("AutoLoaded DbConfig successfully.");
+        });
 
         return next();
     });
