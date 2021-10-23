@@ -3,10 +3,17 @@ import type { DbDataArray } from "../../src/custom-types";
 import ConfigModel from "./ConfigModel";
 
 class DbConfigClass extends DbConfig {
-    static async fetchAutoLoadedData() {
+    /**
+     * Get AutoLoaded Data
+     */
+    static async getAutoLoadedConfig() {
         return ConfigModel.find({ autoload: true });
     }
 
+    /**
+     * Add Config Option
+     * @param data
+     */
     static async addConfig(data: DbDataArray) {
         const all: { group: string; key: string }[] = await ConfigModel.find(
             {},
@@ -29,18 +36,34 @@ class DbConfigClass extends DbConfig {
         return newData.length;
     }
 
+    /**
+     * Get Config
+     * @param query
+     */
     static async getConfig(query: GetConfigQuery) {
         return ConfigModel.native().findOne(query, { projection: { _id: 0 } });
     }
 
+    /**
+     * Set Config
+     * @param query
+     * @param value
+     */
     static async setConfig(query: GetConfigQuery, value: any) {
         return ConfigModel.native().findOneAndUpdate(query, { $set: { value } });
     }
 
+    /**
+     * Get Group
+     * @param group
+     */
     static async getGroup(group: string) {
         return ConfigModel.find({ group }, { projection: { _id: 0 } });
     }
 
+    /**
+     * Delete All
+     */
     static deleteAll() {
         return ConfigModel.native().deleteMany({});
     }
