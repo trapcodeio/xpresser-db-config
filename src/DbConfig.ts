@@ -8,11 +8,11 @@ export class DbConfig {
     /**
      * AutoLoaded Data Getter.
      */
-    static async fetchAutoLoadedData(): Promise<any | undefined> {
+    static async getAutoLoadedConfig(): Promise<any | undefined> {
         return undefined;
     }
 
-    static async addConfig(data: DbDataArray): Promise<boolean | undefined> {
+    static async addConfig(data: DbDataArray): Promise<number | undefined> {
         // save to your db
         return undefined;
     }
@@ -27,5 +27,9 @@ export class DbConfig {
 
     static async getGroup<R = any>(group: string): Promise<Array<R> | undefined> {
         return [];
+    }
+
+    static async deleteAll(): Promise<any> {
+        return undefined;
     }
 }

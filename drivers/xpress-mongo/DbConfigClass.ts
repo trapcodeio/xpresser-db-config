@@ -8,10 +8,25 @@ class DbConfigClass extends DbConfig {
     }
 
     static async addConfig(data: DbDataArray) {
-        await ConfigModel.native().deleteMany({});
+        const all: { group: string; key: string }[] = await ConfigModel.find(
+            {},
+            { projection: { _id: 0, group: 1, key: 1 } }
+        );
+
+        const newData: DbDataArray = [];
+
+        for (const i of data) {
+            // Check if config already exists
+            if (all.some((a) => a.group === i.group && a.key === i.key)) continue;
+            newData.push(i);
+
+            if (i.group !== "__system__")
+                console.log(`${i.group ? i.group + "." : ""}${i.key} ==>`, i.value);
+        }
+
         await ConfigModel.native().insertMany(data);
 
-        return true;
+        return newData.length;
     }
 
     static async getConfig(query: GetConfigQuery) {
@@ -24,6 +39,10 @@ class DbConfigClass extends DbConfig {
 
     static async getGroup(group: string) {
         return ConfigModel.find({ group }, { projection: { _id: 0 } });
+    }
+
+    static deleteAll() {
+        return ConfigModel.native().deleteMany({});
     }
 }
 

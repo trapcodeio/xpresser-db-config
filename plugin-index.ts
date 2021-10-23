@@ -50,7 +50,7 @@ export function run({ namespace }: any, $: DollarSign) {
         const CustomDbConfig = $.engineData.get("DbConfigClass") as typeof DbConfig;
 
         // Get auto loaded data
-        const autoLoaded = await CustomDbConfig.fetchAutoLoadedData();
+        const autoLoaded = await CustomDbConfig.getAutoLoadedConfig();
 
         // if no auto loaded data and xpresser is not running in console mood
         if (!autoLoaded || !autoLoaded.length) {

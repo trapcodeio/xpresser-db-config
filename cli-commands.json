@@ -1,7 +1,12 @@
 [
   {
-    "command": "dbconfig:install",
-    "description": "Install Database Config",
+    "command": "dbc:install",
+    "description": "Install new database configurations.",
     "file": "install.js"
+  },
+  {
+    "command": "dbc:reset",
+    "description": "Reset database configurations.",
+    "file": "reset.js"
   }
 ]

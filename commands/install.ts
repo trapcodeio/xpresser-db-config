@@ -35,8 +35,8 @@ export = async (args: string[], { helper }: any) => {
      * Process Loaded Db Config
      */
     const dbData = ConvertToDBData(dbConfig);
-    await CustomDbConfig.addConfig(dbData);
+    const amount = await CustomDbConfig.addConfig(dbData);
 
-    $.logSuccess("Db Configs successfully added to database.");
+    $.logSuccess(`(${amount}) Db Configs successfully added to database.`);
     return helper.end(true);
 };
