@@ -11,7 +11,7 @@ class DbConfigClass extends DbConfig {
     }
 
     /**
-     * Add Config Option
+     * Add Config Option.
      * @param data
      */
     static async addConfig(data: DbDataArray) {
