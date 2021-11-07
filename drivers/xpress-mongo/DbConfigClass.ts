@@ -25,14 +25,19 @@ class DbConfigClass extends DbConfig {
         for (const i of data) {
             // Check if config already exists
             if (all.some((a) => a.group === i.group && a.key === i.key)) continue;
+
+            // push new data.
             newData.push(i);
 
+            // Omit log for `__system__`
             if (i.group !== "__system__")
                 console.log(`${i.group ? i.group + "." : ""}${i.key} ==>`, i.value);
         }
 
-        await ConfigModel.native().insertMany(data);
+        // Insert if newData has items.
+        if (newData.length) await ConfigModel.native().insertMany(newData);
 
+        // Return number of data received..
         return newData.length;
     }
 
