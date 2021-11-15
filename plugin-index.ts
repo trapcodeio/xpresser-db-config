@@ -7,7 +7,7 @@ import { ConvertDbDataToObject } from "./src/functions";
  * after $.on.boot
  */
 
-export function run({ namespace }: any, $: DollarSign) {
+export async function run({ namespace }: any, $: DollarSign) {
     /**
      * Don't initialize plugin if is NativeCommands
      */
@@ -28,24 +28,28 @@ export function run({ namespace }: any, $: DollarSign) {
      * Process On Boot
      * 1. Load & Save Custom DbConfigClass
      */
-    $.on.boot(async (next) => {
-        // Load Custom DbConfigClass
-        try {
-            const resolvedDbConfigClassFile = $.path.resolve(dbConfigClassFile);
-            const CustomClass = require(resolvedDbConfigClassFile);
 
-            if (!CustomClass) {
-                throw new Error(
-                    `Custom DbConfigClass file must return a class @ ${resolvedDbConfigClassFile}`
-                );
-            }
+    // Load Custom DbConfigClass
+    try {
+        const resolvedDbConfigClassFile = $.path.resolve(dbConfigClassFile);
+        const CustomClass = require(resolvedDbConfigClassFile);
 
-            // Save class to xpresser engine data memory.
-            $.engineData.set("DbConfigClass", CustomClass);
-        } catch (e: any) {
-            $.logErrorAndExit(e.message);
+        if (!CustomClass) {
+            throw new Error(
+                `Custom DbConfigClass file must return a class @ ${resolvedDbConfigClassFile}`
+            );
         }
 
+        // Save class to xpresser engine data memory.
+        $.engineData.set("DbConfigClass", CustomClass);
+    } catch (e: any) {
+        $.logErrorAndExit(e.message);
+    }
+
+    /**
+     * Autoload config on boot.
+     */
+    $.on.boot(async (next) => {
         // Get Class from engine data.
         const CustomDbConfig = $.engineData.get("DbConfigClass") as typeof DbConfig;
 
