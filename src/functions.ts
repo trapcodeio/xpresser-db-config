@@ -48,5 +48,5 @@ export function ConvertDbDataToObject(dbData: DbDataArray) {
         }
     }
 
-    return data.all();
+    return data.all() as any;
 }
