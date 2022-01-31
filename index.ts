@@ -19,7 +19,7 @@ if (!$.engineData.has("DbConfigClass")) {
 // Get lodash
 const lodash = $.modules.lodash();
 
-// Get synced auto-loaded functions
+// Get synced autoloaded functions
 const autoLoaded = $.engineData.sync("AutoLoadedDbConfig");
 
 // Get CustomDbConfig class
@@ -42,7 +42,7 @@ export function autoLoadedConfigAsCollection() {
 }
 
 /**
- * Get a config (Both Auto loaded and not auto loaded)
+ * Get a config (Both Auto loaded and not autoloaded)
  * @param id
  * @param def
  */

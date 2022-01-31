@@ -56,10 +56,10 @@ export async function run({ namespace }: any, $: DollarSign) {
         // Get auto loaded data
         const autoLoaded = await CustomDbConfig.getAutoLoadedConfig();
 
-        // if no auto loaded data and xpresser is not running in console mood
+        // if no autoloaded data and xpresser is not running in console mood
         if (!autoLoaded || !autoLoaded.length) {
             if (!$.options.isConsole)
-                $.logWarning(`db-config is not yet installed. Run "xjs dbconfig:install" `);
+                $.logWarning(`db-config is not yet installed. Run "xjs dbc:install" `);
 
             return next();
         }
