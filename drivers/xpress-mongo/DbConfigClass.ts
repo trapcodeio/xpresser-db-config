@@ -37,7 +37,7 @@ class DbConfigClass extends DbConfig {
         // Insert if newData has items.
         if (newData.length) await ConfigModel.native().insertMany(newData);
 
-        // Return number of data received..
+        // Return number of data received.
         return newData.length;
     }
 
