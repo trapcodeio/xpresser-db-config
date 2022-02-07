@@ -429,10 +429,10 @@ debug@2.6.9:
   dependencies:
     ms "2.0.0"
 
-deep-object-diff@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/deep-object-diff/-/deep-object-diff-1.1.0.tgz#d6fabf476c2ed1751fc94d5ca693d2ed8c18bc5a"
-  integrity sha512-b+QLs5vHgS+IoSNcUE4n9HP2NwcHj7aqnJWsjPtuG75Rh5TOaGt0OjAYInh77d5T16V5cRDC+Pw/6ZZZiETBGw==
+deep-object-diff@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/deep-object-diff/-/deep-object-diff-1.1.7.tgz#348b3246f426427dd633eaa50e1ed1fc2eafc7e4"
+  integrity sha512-QkgBca0mL08P6HiOjoqvmm6xOAl2W6CT2+34Ljhg0OeFan8cwlcdq8jrLKsBBuUFAZLsN5b6y491KdKEoSo9lg==
 
 defaults@^1.0.3:
   version "1.0.3"
@@ -820,10 +820,10 @@ jake@^10.6.1:
     filelist "^1.0.1"
     minimatch "^3.0.4"
 
-joi@^17.5.0:
-  version "17.5.0"
-  resolved "https://registry.yarnpkg.com/joi/-/joi-17.5.0.tgz#7e66d0004b5045d971cf416a55fb61d33ac6e011"
-  integrity sha512-R7hR50COp7StzLnDi4ywOXHrBrgNXuUUfJWIR5lPY5Bm/pOD3jZaTwpluUXVLRWcoWZxkrHBBJ5hLxgnlehbdw==
+joi@^17.6.0:
+  version "17.6.0"
+  resolved "https://registry.yarnpkg.com/joi/-/joi-17.6.0.tgz#0bb54f2f006c09a96e75ce687957bd04290054b2"
+  integrity sha512-OX5dG6DTbcr/kbMFj0KGYxuew69HPcAE3K/sZpEV2nP6e/j/C0HV+HNiBPCASxdx5T7DMoa0s8UeHWMnb6n2zw==
   dependencies:
     "@hapi/hoek" "^9.0.0"
     "@hapi/topo" "^5.0.0"
@@ -934,22 +934,22 @@ moment-timezone@^0.5.x:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
   integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
 
-mongodb-connection-string-url@^2.3.2:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/mongodb-connection-string-url/-/mongodb-connection-string-url-2.4.1.tgz#6b3c6c40133a0ad059fe9a0abda64b2a1cb4e8b4"
-  integrity sha512-d5Kd2bVsKcSA7YI/yo57fSTtMwRQdFkvc5IZwod1RRxJtECeWPPSo7zqcUGJELifRA//Igs4spVtYAmvFCatug==
+mongodb-connection-string-url@^2.4.1:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/mongodb-connection-string-url/-/mongodb-connection-string-url-2.4.2.tgz#422861119764796420889f9b0416b957e1b0bde0"
+  integrity sha512-mZUXF6nUzRWk5J3h41MsPv13ukWlH4jOMSk6astVeoZ1EbdTJyF5I3wxKkvqBAOoVtzLgyEYUvDjrGdcPlKjAw==
   dependencies:
     "@types/whatwg-url" "^8.2.1"
     whatwg-url "^11.0.0"
 
-mongodb@4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-4.3.0.tgz#beac457cf57ea1b5c76ec67b8bbd6a63254bbc7c"
-  integrity sha512-ovq9ZD9wEvab+LsaQOiwtne1Sy2egaHW8K/H5M18Tv+V5PgTRi+qdmxDGlbm94TSL3h56m6amstptu115Nzgow==
+mongodb@4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-4.3.1.tgz#e346f76e421ec6f47ddea5c8f5140e6181aaeb94"
+  integrity sha512-sNa8APSIk+r4x31ZwctKjuPSaeKuvUeNb/fu/3B6dRM02HpEgig7hTHM8A/PJQTlxuC/KFWlDlQjhsk/S43tBg==
   dependencies:
     bson "^4.6.1"
     denque "^2.0.1"
-    mongodb-connection-string-url "^2.3.2"
+    mongodb-connection-string-url "^2.4.1"
     socks "^2.6.1"
   optionalDependencies:
     saslprep "^1.0.3"
@@ -1411,10 +1411,10 @@ type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-typescript@^4.5.4:
-  version "4.5.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.4.tgz#a17d3a0263bf5c8723b9c52f43c5084edf13c2e8"
-  integrity sha512-VgYs2A2QIRuGphtzFV7aQJduJ2gyfTljngLzjpfW9FoYZF6xuw1W0vW9ghCKLfcWrCFxK81CSGRAvS1pn4fIUg==
+typescript@^4.5.5:
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.5.tgz#d8c953832d28924a9e3d37c73d729c846c5896f3"
+  integrity sha512-TCTIul70LyWe6IJWT8QSYeA54WQe8EjQFU4wY52Fasj5UKx88LNYKCgBEHcOMOrFF1rKGbD8v/xcNWVUq9SymA==
 
 uglify-js@^3.1.4:
   version "3.14.2"
@@ -1493,23 +1493,22 @@ xjs-cli@^1.1.5:
     object-collection "^3.0.0"
     shelljs "^0.8.5"
 
-xpress-mongo@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/xpress-mongo/-/xpress-mongo-2.4.0.tgz#2ef17f4ca277a386a20a2810f8a79842518c3f36"
-  integrity sha512-WeFCKdEyGhGJ6pVThVlkDA0HKjQhJleF6lCUUM8xQwp6h94cF0cSioODCOov5WrMyEPXx8dWPtO916lOo579IQ==
+xpress-mongo@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/xpress-mongo/-/xpress-mongo-2.6.0.tgz#68ca080d1d619457cde1f4b526443f454ac94787"
+  integrity sha512-xCiqL0j8wvaUu/G+0byVKRxnhWrC89+0XextYVsFdwABVjl9cd5EVJ4sQSyxI+RXBeG8JniJm5GMb62e6MNz5g==
   dependencies:
-    deep-object-diff "^1.1.0"
+    deep-object-diff "^1.1.7"
     escape-string-regexp-node "^1.0.2"
-    joi "^17.5.0"
-    lodash "^4.17.21"
-    mongodb "4.3.0"
+    joi "^17.6.0"
+    mongodb "4.3.1"
     object-collection "^3.0.0"
     uuid "^8.3.2"
 
-xpresser@^0.26.2:
-  version "0.26.2"
-  resolved "https://registry.yarnpkg.com/xpresser/-/xpresser-0.26.2.tgz#a522f9737f99886434fe27914fc099ff88fc8d60"
-  integrity sha512-/PpLoaIY4SpB+2J7/3skXrKaJoypOOerOkrnCogBXxURH6tKxgzWLlFUSYthrWeAAHSyU65TZtCSF1yzK3xUXg==
+xpresser@^0.26.11:
+  version "0.26.11"
+  resolved "https://registry.yarnpkg.com/xpresser/-/xpresser-0.26.11.tgz#9f9b6d09fa5a1c60fef7e835edf418d7c3a0a5f5"
+  integrity sha512-ic6qHVpKRBX9chndP07SFDdRNPDZO1E2gSYVq8bLTWwm7VF8F2L8zFiXTmFtoSRgMhfvCWLRmd3R9wC69wnjzQ==
   dependencies:
     "@types/express" "^4.17.13"
     "@xpresser/router" "^2.0.1"

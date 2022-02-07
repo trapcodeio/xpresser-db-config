@@ -62,10 +62,10 @@ module.exports = [
 ### Getting/Setting configuration
 
 ```javascript
-const {getConfig, setConfig, setConfigs} = require("xpresser-db-config");
+const {get, set, setConfigs} = require("xpresser-db-config");
 
-getConfig('app.name'); // App Name
-getConfig('app.slogan'); // App Slogan
+get('app.name'); // App Name
+get('app.slogan'); // App Slogan
 
-await setConfig('app.name', "New Name");
+await set('app.name', "New Name");
 ```

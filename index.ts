@@ -3,7 +3,7 @@
  */
 import { getInstance } from "xpresser";
 import { Obj } from "object-collection/exports";
-import { DbConfig, GetConfigQuery } from "./src/DbConfig";
+import { DbConfig, GetConfigQuery } from "./src/db-config";
 import { ConvertDbDataToObject } from "./src/functions";
 import type { DbData } from "./src/custom-types";
 
@@ -63,7 +63,7 @@ export async function getConfig<R = any>(id: string, def?: R): Promise<R | undef
         where.key = dots[1];
     }
 
-    const result = await CustomDbConfig.getConfig<DbData>(where);
+    const result = await CustomDbConfig.get<DbData>(where);
 
     if (!result) return def;
 
@@ -75,7 +75,7 @@ export async function getConfig<R = any>(id: string, def?: R): Promise<R | undef
  * @param group
  */
 export async function getConfigGroup<R = any>(group: string) {
-    const result = await CustomDbConfig.getGroup<DbData>(group);
+    const result = await CustomDbConfig.group<DbData>(group);
 
     if (!result) return {} as R;
 
@@ -100,8 +100,8 @@ export async function setConfig(id: string, value: any) {
     // Build query that will match db result
     const where = makeConfigQuery(id);
 
-    // Call setConfig
-    await CustomDbConfig.setConfig(where, value);
+    // Call set
+    await CustomDbConfig.set(where, value);
 
     // if auto loaded data has id, update value.
     if (lodash.has(autoLoaded.sync, id)) {

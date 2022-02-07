@@ -1,5 +1,5 @@
 import { DollarSign } from "xpresser/types";
-import { DbConfig } from "./src/DbConfig";
+import { DbConfig } from "./src/db-config";
 import { ConvertDbDataToObject } from "./src/functions";
 
 /**
@@ -54,7 +54,7 @@ export async function run({ namespace }: any, $: DollarSign) {
         const CustomDbConfig = $.engineData.get("DbConfigClass") as typeof DbConfig;
 
         // Get auto loaded data
-        const autoLoaded = await CustomDbConfig.getAutoLoadedConfig();
+        const autoLoaded = await CustomDbConfig.autoLoadedConfig();
 
         // if no autoloaded data and xpresser is not running in console mood
         if (!autoLoaded || !autoLoaded.length) {

@@ -14,7 +14,7 @@ const $ = init({
 
         // Add db config path.
         dbConfig: "backend://db-config",
-        dbConfigClass: "backend://../drivers/xpress-mongo/DbConfigClass"
+        dbConfigClass: "backend://../drivers/xpress-mongo/db-config-class"
     },
 
     // dbConfig: {

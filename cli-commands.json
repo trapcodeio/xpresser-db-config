@@ -1,8 +1,18 @@
 [
   {
     "command": "dbc:install",
-    "description": "Install new database configurations.",
+    "description": "Deprecated!, Use `dbc:migrate` instead.",
     "file": "install.js"
+  },
+  {
+    "command": "dbc:migrate",
+    "description": "Add/Remove new/pending database configurations.",
+    "file": "migrate.js"
+  },
+  {
+    "command": "dbc:find",
+    "description": "Find database configurations.",
+    "file": "find.js"
   },
   {
     "command": "dbc:reset",

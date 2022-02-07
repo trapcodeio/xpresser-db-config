@@ -50,3 +50,66 @@ export function ConvertDbDataToObject(dbData: DbDataArray) {
 
     return data.all() as any;
 }
+
+/**
+ * Convert Data to array of group.key strings.
+ * @param dbDataArray
+ * @constructor
+ */
+export function ConvertToGroupDotKeyArray(dbDataArray: DbDataArray) {
+    const groupDotKey: string[] = [];
+
+    for (const d of dbDataArray) {
+        // ignore if __system__
+        if (d.group === "__system__") continue;
+
+        // convert to group.key
+        if (d.group) {
+            groupDotKey.push(`${d.group}.${d.key}`);
+        } else {
+            groupDotKey.push(d.key);
+        }
+    }
+
+    return groupDotKey;
+}
+
+/**
+ * Convert group.key to object {group: string, key: string}
+ */
+export function ConvertGroupDotKeyToObject(groupDotKey: string[]) {
+    const groupKey: { group: string; key: string }[] = [];
+
+    for (const gk of groupDotKey) {
+        const [group, key] = gk.split(".");
+
+        groupKey.push({ group, key });
+    }
+
+    return groupKey;
+}
+
+/**
+ * Load db config file
+ */
+// export function loadDbConfigFile($: DollarSign) {
+//     let dbConfigFile = $.config.get("paths.dbConfig");
+//     const CustomDbConfig = $.engineData.get("DbConfigClass") as typeof DbConfig;
+//
+//     /**
+//      * Resolve paths just in-case a smart path is used
+//      * e.g. backend://, base:// e.t.c
+//      */
+//     dbConfigFile = $.path.resolve(dbConfigFile);
+//
+//
+//     /**
+//      * Try loading db config file.
+//      */
+//     try {
+//         dbConfig = dbConfig.concat(require(dbConfigFile));
+//     } catch (e: any) {
+//         return $.logErrorAndExit(e.message);
+//     }
+//
+// }

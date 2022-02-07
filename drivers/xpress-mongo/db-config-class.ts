@@ -1,6 +1,6 @@
-import { DbConfig, GetConfigQuery } from "../../src/DbConfig";
+import { DbConfig, GetConfigQuery } from "../../src/db-config";
 import type { DbDataArray } from "../../src/custom-types";
-import ConfigModel from "./ConfigModel";
+import ConfigModel from "./config-model";
 
 class DbConfigClass extends DbConfig {
     /**
@@ -14,7 +14,7 @@ class DbConfigClass extends DbConfig {
      * Add Config Option.
      * @param data
      */
-    static async addConfig(data: DbDataArray) {
+    static async add(data: DbDataArray) {
         const all: { group: string; key: string }[] = await ConfigModel.find(
             {},
             { projection: { _id: 0, group: 1, key: 1 } }
@@ -45,7 +45,7 @@ class DbConfigClass extends DbConfig {
      * Get Config
      * @param query
      */
-    static async getConfig(query: GetConfigQuery) {
+    static async get(query: GetConfigQuery) {
         return ConfigModel.native().findOne(query, { projection: { _id: 0 } });
     }
 
@@ -54,7 +54,7 @@ class DbConfigClass extends DbConfig {
      * @param query
      * @param value
      */
-    static async setConfig(query: GetConfigQuery, value: any) {
+    static async set(query: GetConfigQuery, value: any) {
         return ConfigModel.native().findOneAndUpdate(query, { $set: { value } });
     }
 
@@ -62,8 +62,20 @@ class DbConfigClass extends DbConfig {
      * Get Group
      * @param group
      */
-    static async getGroup(group: string) {
+    static async group(group: string) {
         return ConfigModel.find({ group }, { projection: { _id: 0 } });
+    }
+
+    /**
+     * Delete Config
+     * @param query
+     */
+    static delete(query: GetConfigQuery | GetConfigQuery[]) {
+        if (Array.isArray(query)) {
+            return ConfigModel.native().deleteMany({ $or: query });
+        }
+
+        return ConfigModel.native().findOneAndDelete(query);
     }
 
     /**
@@ -71,6 +83,18 @@ class DbConfigClass extends DbConfig {
      */
     static deleteAll() {
         return ConfigModel.native().deleteMany({});
+    }
+
+    /**
+     * Get Group key Map
+     */
+    static async groupDotKeyArray() {
+        const configs = await ConfigModel.find(
+            { group: { $ne: "__system__" } },
+            { projection: { _id: 0, group: 1, key: 1 } }
+        );
+
+        return configs.map((c) => (c.group ? `${c.group}.${c.key}` : c.key));
     }
 }
 
