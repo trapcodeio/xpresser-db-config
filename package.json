@@ -1,6 +1,6 @@
 {
   "name": "xpresser-db-config",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Database config loader for xpresserjs",
   "main": "index.js",
   "types": "index.d.ts",
