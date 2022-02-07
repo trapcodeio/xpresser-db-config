@@ -7,7 +7,7 @@ class DbConfigClass extends DbConfig {
     /**
      * Get AutoLoaded Data
      */
-    static async getAutoLoadedConfig() {
+    static async autoLoadedConfig() {
         return ConfigModel.find({ autoload: true });
     }
 
