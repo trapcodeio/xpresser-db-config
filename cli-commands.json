@@ -10,12 +10,12 @@
     "file": "migrate.js"
   },
   {
-    "command": "dbc:find",
+    "command": "dbc:find <query>",
     "description": "Find database configurations.",
     "file": "find.js"
   },
   {
-    "command": "dbc:set",
+    "command": "dbc:set <query> <value>",
     "description": "Set database configurations.",
     "file": "set.js"
   },
