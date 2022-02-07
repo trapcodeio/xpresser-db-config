@@ -1,9 +1,9 @@
-import { DollarSign } from "xpresser/types";
-import { DbConfig } from "../src/db-config";
+import type { DbConfig } from "../src/db-config";
+import type JobHelper from "xpresser/src/Console/JobHelper";
 import migrate from "./migrate";
 
-export = async (args: string[], { helper }: any) => {
-    const $: DollarSign = helper.$;
+export = async (args: string[], { helper }: { helper: JobHelper }) => {
+    const $ = helper.$;
 
     const CustomDbConfig = $.engineData.get("DbConfigClass") as typeof DbConfig;
     await CustomDbConfig.deleteAll();

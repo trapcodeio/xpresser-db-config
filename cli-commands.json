@@ -15,6 +15,11 @@
     "file": "find.js"
   },
   {
+    "command": "dbc:set",
+    "description": "Set database configurations.",
+    "file": "set.js"
+  },
+  {
     "command": "dbc:reset",
     "description": "Reset database configurations.",
     "file": "reset.js"

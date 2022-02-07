@@ -5,7 +5,8 @@ export = <DBConfiguration>[
         group: "app",
         config: {
             name: "App Name",
-            slogan: "App slogan"
+            slogan: "App slogan",
+            launchYear: 2020
         },
         autoload: true
     },

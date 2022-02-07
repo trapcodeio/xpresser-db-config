@@ -1,8 +1,7 @@
-import type { DollarSign } from "xpresser/types";
 import type JobHelper from "xpresser/src/Console/JobHelper";
 
 export = async (args: string[], { helper }: { helper: JobHelper }) => {
-    const $: DollarSign = helper.$;
+    const $ = helper.$;
 
     $.logDeprecated(
         "0.0.18",

@@ -1,6 +1,6 @@
-import { DollarSign } from "xpresser/types";
-import { DbConfig } from "../src/db-config";
+import type { DbConfig } from "../src/db-config";
 import type { DBConfiguration } from "../src/custom-types";
+import type JobHelper from "xpresser/src/Console/JobHelper";
 import {
     ConvertGroupDotKeyToObject,
     ConvertToDBData,
@@ -10,8 +10,8 @@ import {
 /**
  * Add new configs to database
  */
-export = async (args: string[], { helper }: any) => {
-    const $: DollarSign = helper.$;
+export = async (args: string[], { helper }: { helper: JobHelper }) => {
+    const $ = helper.$;
 
     let dbConfigFile = $.config.get("paths.dbConfig");
     const CustomDbConfig = $.engineData.get("DbConfigClass") as typeof DbConfig;

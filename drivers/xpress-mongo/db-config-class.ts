@@ -1,6 +1,7 @@
 import { DbConfig, GetConfigQuery } from "../../src/db-config";
 import type { DbDataArray } from "../../src/custom-types";
 import ConfigModel from "./config-model";
+import kindOf from "kind-of";
 
 class DbConfigClass extends DbConfig {
     /**
@@ -55,7 +56,9 @@ class DbConfigClass extends DbConfig {
      * @param value
      */
     static async set(query: GetConfigQuery, value: any) {
-        return ConfigModel.native().findOneAndUpdate(query, { $set: { value } });
+        return ConfigModel.native().findOneAndUpdate(query, {
+            $set: { value, type: kindOf(value) }
+        });
     }
 
     /**

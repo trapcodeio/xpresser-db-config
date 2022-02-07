@@ -1,10 +1,10 @@
 import type { DollarSign } from "xpresser/types";
 import type JobHelper from "xpresser/src/Console/JobHelper";
-import { DbConfig } from "../src/db-config";
-import { DbData } from "../src/custom-types";
+import type { DbConfig } from "../src/db-config";
+import type { DbData } from "../src/custom-types";
 
-export = async (args: string[], { helper: h }: { helper: JobHelper }) => {
-    const $: DollarSign = h.$;
+export = async (args: string[], { helper }: { helper: JobHelper }) => {
+    const $: DollarSign = helper.$;
     // Get Args
     const [find] = args;
 
@@ -49,7 +49,7 @@ export = async (args: string[], { helper: h }: { helper: JobHelper }) => {
         }
     } else if (configs) {
         console.dir({ [configs.group + "." + configs.key]: configs.value }, { depth: 5 });
-        return h.end(true);
+        return helper.end(true);
     }
 
     return $.logErrorAndExit(`No config found for "${find}"`);
