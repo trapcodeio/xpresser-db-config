@@ -25,7 +25,7 @@ export class DbConfig {
         return undefined;
     }
 
-    static async group<R = any>(group: string): Promise<Array<R> | undefined> {
+    static async group<R = any>(group: string, keys?: string[]): Promise<Array<R> | undefined> {
         return [];
     }
 

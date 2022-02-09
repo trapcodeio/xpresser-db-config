@@ -73,9 +73,10 @@ export async function getConfig<R = any>(id: string, def?: R): Promise<R | undef
 /**
  * Get a config group
  * @param group
+ * @param keys
  */
-export async function getConfigGroup<R = any>(group: string) {
-    const result = await CustomDbConfig.group<DbData>(group);
+export async function getConfigGroup<R = any>(group: string, keys?: string[]) {
+    const result = await CustomDbConfig.group<DbData>(group, keys);
 
     if (!result) return {} as R;
 

@@ -1,5 +1,5 @@
 import { Controller, Http } from "xpresser/types/http";
-import { autoLoadedConfig, getConfigGroup } from "../../index";
+import { getConfigGroup } from "../../index";
 
 /**
  * AppController
@@ -17,7 +17,7 @@ export = <Controller.Object>{
      */
     async index(http) {
         return http.send({
-            app: autoLoadedConfig("app"),
+            app: await getConfigGroup("app", ["slogan", "name"]),
             exchange: await getConfigGroup("exchange")
         });
     }

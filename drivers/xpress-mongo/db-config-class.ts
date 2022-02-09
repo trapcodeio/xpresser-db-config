@@ -64,9 +64,11 @@ class DbConfigClass extends DbConfig {
     /**
      * Get Group
      * @param group
+     * @param keys
      */
-    static async group(group: string) {
-        return ConfigModel.find({ group }, { projection: { _id: 0 } });
+    static async group(group: string, keys?: string[]) {
+        const query = keys ? { group, key: { $in: keys } } : { group };
+        return ConfigModel.find(query, { projection: { _id: 0 } });
     }
 
     /**
