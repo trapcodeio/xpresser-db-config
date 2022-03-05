@@ -10,7 +10,7 @@
     "file": "migrate.js"
   },
   {
-    "command": "dbc:find <query>",
+    "command": "dbc:find <query> [format]",
     "description": "Find database configurations.",
     "file": "find.js"
   },

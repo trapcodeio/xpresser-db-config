@@ -1,8 +1,17 @@
-import type { DBConfiguration, DbDataArray } from "./custom-types";
+import type { DBConfiguration, DBConfigurationFn, DbDataArray } from "./custom-types";
 import kindOf from "kind-of";
 import { Obj } from "object-collection/exports";
 import type { DollarSign } from "xpresser/types";
 import type { DbConfig } from "./db-config";
+import { DbConfigMeta } from "./DbConfigMeta";
+
+/**
+ * Define DbConfig Wrapper function
+ * @param config
+ */
+export function defineDbConfig<Meta = any>(config: DBConfigurationFn<Meta> | DBConfiguration) {
+    return typeof config === "function" ? config({ v: (v, m) => new DbConfigMeta(v, m) }) : config;
+}
 
 /**
  * Get Current Custom DbConfig
@@ -28,14 +37,26 @@ export function ConvertToDBData(configs: DBConfiguration) {
         const entries = Object.entries(children);
 
         for (const [key, value] of entries) {
-            // noinspection PointlessBooleanExpressionJS
-            dbData.push({
-                group,
-                key,
-                value,
-                type: kindOf(value),
-                autoload: !!autoload
-            });
+            if (value instanceof DbConfigMeta && value.meta) {
+                // noinspection PointlessBooleanExpressionJS
+                dbData.push({
+                    group,
+                    key,
+                    value: value.value,
+                    type: kindOf(value.value),
+                    meta: value.meta,
+                    autoload: !!autoload
+                });
+            } else {
+                // noinspection PointlessBooleanExpressionJS
+                dbData.push({
+                    group,
+                    key,
+                    value,
+                    type: kindOf(value),
+                    autoload: !!autoload
+                });
+            }
         }
     }
 

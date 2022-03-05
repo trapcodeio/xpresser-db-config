@@ -6,7 +6,8 @@ import { getActiveDbConfig } from "../src/functions";
 export = async (args: string[], { helper }: { helper: JobHelper }) => {
     const $: DollarSign = helper.$;
     // Get Args
-    const [find] = args;
+    const [find, format] = args;
+    const dump = format === "dump";
 
     // If no find argument
     if (!find) return $.logErrorAndExit("Please provide a config to find.");
@@ -45,11 +46,13 @@ export = async (args: string[], { helper }: { helper: JobHelper }) => {
                 delete (config as any).group;
             }
 
-            console.table(configs);
+            dump ? console.dir(configs, { depth: 5 }) : console.table(configs);
             return $.logSuccess(`Found ${configs.length} configs.`);
         }
     } else if (configs) {
-        console.dir({ [configs.group + "." + configs.key]: configs.value }, { depth: 5 });
+        dump
+            ? console.dir(configs, { depth: 5 })
+            : console.dir({ [configs.group + "." + configs.key]: configs.value }, { depth: 5 });
         return helper.end(true);
     }
 
