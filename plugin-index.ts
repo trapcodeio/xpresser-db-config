@@ -25,10 +25,10 @@ export async function run({ namespace }: any, $: DollarSign) {
 
     /**
      * Process On Boot
-     * 1. Load & Save Custom DbConfigClass
+     * 1. Load & Save Custom DbConfig
      */
 
-    // Load Custom DbConfigClass
+    // Load Custom DbConfig
     try {
         const resolvedDbConfigClassFile = $.path.resolve(dbConfigClassFile);
         const CustomClass = require(resolvedDbConfigClassFile);

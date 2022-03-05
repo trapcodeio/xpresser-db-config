@@ -1,9 +1,9 @@
 import { DbConfig, GetConfigQuery } from "../../src/db-config";
 import type { DbDataArray } from "../../src/custom-types";
-import ConfigModel from "./config-model";
+import ConfigModel from "./ConfigModel";
 import kindOf from "kind-of";
 
-class DbConfigClass extends DbConfig {
+class XpressMongoDbConfig extends DbConfig {
     /**
      * Get AutoLoaded Data
      */
@@ -103,4 +103,4 @@ class DbConfigClass extends DbConfig {
     }
 }
 
-export = DbConfigClass;
+export = XpressMongoDbConfig;

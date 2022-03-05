@@ -22,8 +22,8 @@ const lodash = $.modules.lodash();
 // Get synced autoloaded functions
 const autoLoaded = $.engineData.sync("AutoLoadedDbConfig");
 
-// Get CustomDbConfig class
-const CustomDbConfig = getActiveDbConfig($);
+// Get activeDbConfig class
+const activeDbConfig = getActiveDbConfig($);
 
 /**
  * Get an auto-loaded config value.
@@ -63,7 +63,7 @@ export async function getConfig<R = any>(id: string, def?: R): Promise<R | undef
         where.key = dots[1];
     }
 
-    const result = await CustomDbConfig.get<DbData>(where);
+    const result = await activeDbConfig.get<DbData>(where);
 
     if (!result) return def;
 
@@ -76,7 +76,7 @@ export async function getConfig<R = any>(id: string, def?: R): Promise<R | undef
  * @param keys
  */
 export async function getConfigGroup<R = any>(group: string, keys?: string[]) {
-    const result = await CustomDbConfig.group<DbData>(group, keys);
+    const result = await activeDbConfig.group<DbData>(group, keys);
 
     if (!result) return {} as R;
 
@@ -102,7 +102,7 @@ export async function setConfig(id: string, value: any) {
     const where = makeConfigQuery(id);
 
     // Call set
-    await CustomDbConfig.set(where, value);
+    await activeDbConfig.set(where, value);
 
     // if auto loaded data has id, update value.
     if (lodash.has(autoLoaded.sync, id)) {

@@ -5,7 +5,7 @@ import type { DollarSign } from "xpresser/types";
 import type { DbConfig } from "./db-config";
 
 /**
- * Get Current Custom DbConfigClass
+ * Get Current Custom DbConfig
  * @param $
  */
 export function getActiveDbConfig($: DollarSign) {
@@ -104,7 +104,7 @@ export function ConvertGroupDotKeyToObject(groupDotKey: string[]) {
  */
 // export function loadDbConfigFile($: DollarSign) {
 //     let dbConfigFile = $.config.get("paths.dbConfig");
-//     const CustomDbConfig = $.engineData.get("DbConfigClass") as typeof DbConfig;
+//     const CustomDbConfig = $.engineData.get("DbConfig") as typeof DbConfig;
 //
 //     /**
 //      * Resolve paths just in-case a smart path is used
