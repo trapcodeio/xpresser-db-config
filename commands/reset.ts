@@ -1,11 +1,11 @@
-import type { DbConfig } from "../src/db-config";
 import type JobHelper from "xpresser/src/Console/JobHelper";
 import migrate from "./migrate";
+import { getActiveDbConfig } from "../src/functions";
 
 export = async (args: string[], { helper }: { helper: JobHelper }) => {
     const $ = helper.$;
 
-    const CustomDbConfig = $.engineData.get("DbConfigClass") as typeof DbConfig;
+    const CustomDbConfig = getActiveDbConfig($);
     await CustomDbConfig.deleteAll();
 
     $.logSuccess("Db config cleared... Re-installing...");

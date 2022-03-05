@@ -1,6 +1,16 @@
 import type { DBConfiguration, DbDataArray } from "./custom-types";
 import kindOf from "kind-of";
 import { Obj } from "object-collection/exports";
+import type { DollarSign } from "xpresser/types";
+import type { DbConfig } from "./db-config";
+
+/**
+ * Get Current Custom DbConfigClass
+ * @param $
+ */
+export function getActiveDbConfig($: DollarSign) {
+    return $.engineData.get("DbConfigClass") as typeof DbConfig;
+}
 
 /**
  *

@@ -3,8 +3,8 @@
  */
 import { getInstance } from "xpresser";
 import { Obj } from "object-collection/exports";
-import { DbConfig, GetConfigQuery } from "./src/db-config";
-import { ConvertDbDataToObject } from "./src/functions";
+import { GetConfigQuery } from "./src/db-config";
+import { ConvertDbDataToObject, getActiveDbConfig } from "./src/functions";
 import type { DbData } from "./src/custom-types";
 
 const $ = getInstance();
@@ -23,7 +23,7 @@ const lodash = $.modules.lodash();
 const autoLoaded = $.engineData.sync("AutoLoadedDbConfig");
 
 // Get CustomDbConfig class
-const CustomDbConfig = $.engineData.get("DbConfigClass") as typeof DbConfig;
+const CustomDbConfig = getActiveDbConfig($);
 
 /**
  * Get an auto-loaded config value.

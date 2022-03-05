@@ -1,10 +1,10 @@
-import type { DbConfig } from "../src/db-config";
 import type { DBConfiguration } from "../src/custom-types";
 import type JobHelper from "xpresser/src/Console/JobHelper";
 import {
     ConvertGroupDotKeyToObject,
     ConvertToDBData,
-    ConvertToGroupDotKeyArray
+    ConvertToGroupDotKeyArray,
+    getActiveDbConfig
 } from "../src/functions";
 
 /**
@@ -14,7 +14,7 @@ export = async (args: string[], { helper }: { helper: JobHelper }) => {
     const $ = helper.$;
 
     let dbConfigFile = $.config.get("paths.dbConfig");
-    const CustomDbConfig = $.engineData.get("DbConfigClass") as typeof DbConfig;
+    const CustomDbConfig = getActiveDbConfig($);
 
     /**
      * Resolve paths just in-case a smart path is used

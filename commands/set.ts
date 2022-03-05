@@ -1,6 +1,5 @@
 import type JobHelper from "xpresser/src/Console/JobHelper";
-import type { DbConfig } from "../src/db-config";
-import { ConvertGroupDotKeyToObject } from "../src/functions";
+import { ConvertGroupDotKeyToObject, getActiveDbConfig } from "../src/functions";
 
 export = async (args: string[], { helper }: { helper: JobHelper }) => {
     const $ = helper.$;
@@ -10,7 +9,7 @@ export = async (args: string[], { helper }: { helper: JobHelper }) => {
     if (!value) return $.logErrorAndExit("value is required");
 
     // Get DbConfig Class
-    const dbConfig = $.engineData.get("DbConfigClass") as typeof DbConfig;
+    const dbConfig = getActiveDbConfig($);
     const query = ConvertGroupDotKeyToObject([groupDotKey])[0];
     const config = await dbConfig.get(query);
 

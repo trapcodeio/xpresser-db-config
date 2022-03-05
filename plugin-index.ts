@@ -1,6 +1,5 @@
 import { DollarSign } from "xpresser/types";
-import { DbConfig } from "./src/db-config";
-import { ConvertDbDataToObject } from "./src/functions";
+import { ConvertDbDataToObject, getActiveDbConfig } from "./src/functions";
 
 /**
  * Xpresser runs this function before $.on.boot
@@ -51,7 +50,7 @@ export async function run({ namespace }: any, $: DollarSign) {
      */
     $.on.boot(async (next) => {
         // Get Class from engine data.
-        const CustomDbConfig = $.engineData.get("DbConfigClass") as typeof DbConfig;
+        const CustomDbConfig = getActiveDbConfig($);
 
         // Get auto loaded data
         const autoLoaded = await CustomDbConfig.autoLoadedConfig();

@@ -1,7 +1,7 @@
 import type { DollarSign } from "xpresser/types";
 import type JobHelper from "xpresser/src/Console/JobHelper";
-import type { DbConfig } from "../src/db-config";
 import type { DbData } from "../src/custom-types";
+import { getActiveDbConfig } from "../src/functions";
 
 export = async (args: string[], { helper }: { helper: JobHelper }) => {
     const $: DollarSign = helper.$;
@@ -12,7 +12,7 @@ export = async (args: string[], { helper }: { helper: JobHelper }) => {
     if (!find) return $.logErrorAndExit("Please provide a config to find.");
 
     // Get DbConfig Class
-    const dbConfig = $.engineData.get("DbConfigClass") as typeof DbConfig;
+    const dbConfig = getActiveDbConfig($);
 
     // Log
     $.logCalmly(`Find: "${find}"`);
