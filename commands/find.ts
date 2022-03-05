@@ -44,6 +44,7 @@ export = async (args: string[], { helper }: { helper: JobHelper }) => {
 
                 delete (config as any).type;
                 delete (config as any).group;
+                delete (config as any).meta;
             }
 
             dump ? console.dir(configs, { depth: 5 }) : console.table(configs);
