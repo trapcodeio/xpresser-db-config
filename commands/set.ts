@@ -15,14 +15,17 @@ export = async (args: string[], { helper }: { helper: JobHelper }) => {
 
     if (!config) return $.logErrorAndExit(`Config: "${groupDotKey}" not found!`);
 
-    if (!["string", "number"].includes(config.type)) {
-        return $.logErrorAndExit(`Config: "${groupDotKey}" is not a string or number!`);
+    const allowedTypes = ["string", "number", "boolean"];
+    if (!allowedTypes.includes(config.type)) {
+        return $.logErrorAndExit(`Config: "${groupDotKey}" must be type of ${allowedTypes.join(", ")}!`);
     }
 
     if (config.type === "string") {
         config.value = value;
     } else if (config.type === "number") {
         config.value = Number(value);
+    } else if (config.type === "boolean") {
+        config.value = value.toLowerCase() === "true";
     }
 
     // Set value
