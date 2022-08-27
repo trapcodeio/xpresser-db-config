@@ -1,20 +1,20 @@
-import { DbConfig, GetConfigQuery } from "../../src/db-config";
+import { DbConfigDriver, GetConfigQuery } from "../../src/db-config";
 import type { DbDataArray } from "../../src/custom-types";
 import ConfigModel from "./ConfigModel";
 
-class XpressMongoDbConfig implements DbConfig {
+export = DbConfigDriver({
     /**
      * Get AutoLoaded Data
      */
-    static async autoLoadedConfig() {
+    async autoLoadedConfig() {
         return ConfigModel.find({ autoload: true });
-    }
+    },
 
     /**
      * Add Config Option.
      * @param data
      */
-    static async add(data: DbDataArray) {
+    async add(data: DbDataArray) {
         const all: { group: string; key: string }[] = await ConfigModel.find(
             {},
             { projection: { _id: 0, group: 1, key: 1 } }
@@ -39,71 +39,69 @@ class XpressMongoDbConfig implements DbConfig {
 
         // Return number of data received.
         return newData.length;
-    }
+    },
 
     /**
      * Get Config
      * @param query
      */
-    static async get(query: GetConfigQuery) {
+    async get(query: GetConfigQuery) {
         return ConfigModel.native().findOne(query, { projection: { _id: 0 } });
-    }
+    },
 
     /**
      * Set Config
      * @param query
      * @param value
      */
-    static async set(query: GetConfigQuery, value: any) {
+    async set(query: GetConfigQuery, value: any) {
         return ConfigModel.native().findOneAndUpdate(query, {
             $set: { value }
         });
-    }
+    },
 
     /**
      * Get Group
      * @param group
      * @param keys
      */
-    static async group(group: string, keys?: string[]) {
+    async group(group: string, keys?: string[]) {
         const query = keys ? { group, key: { $in: keys } } : { group };
         return ConfigModel.find(query, { projection: { _id: 0 } });
-    }
+    },
 
     /**
      * Delete Config
      * @param query
      */
-    static delete(query: GetConfigQuery | GetConfigQuery[]) {
+    delete(query: GetConfigQuery | GetConfigQuery[]) {
         if (Array.isArray(query)) {
             return ConfigModel.native().deleteMany({ $or: query });
         }
 
         return ConfigModel.native().findOneAndDelete(query);
-    }
+    },
 
     /**
      * Delete All
      */
-    static deleteAll() {
+    deleteAll() {
         return ConfigModel.native().deleteMany({});
-    }
+    },
 
     /**
      * Get all configs
      */
-    static async getAll() {
+    async getAll() {
         return await ConfigModel.find({ group: { $ne: "__system__" } }, { projection: { _id: 0 } });
-    }
+    },
 
     /**
      * Get Group key Map
      */
-    static async groupDotKeyArray() {
+    async groupDotKeyArray() {
         const configs = await this.getAll();
 
         return configs.map((c) => (c.group ? `${c.group}.${c.key}` : c.key));
     }
-}
-
-export = XpressMongoDbConfig;
+});

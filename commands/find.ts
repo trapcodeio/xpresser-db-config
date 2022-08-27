@@ -12,7 +12,7 @@ export = async (args: string[], { helper }: { helper: JobHelper }) => {
     // If no find argument
     if (!find) return $.logErrorAndExit("Please provide a config to find.");
 
-    // Get DbConfig Class
+    // Get DbConfigDriver Class
     const dbConfig = getActiveDbConfig($);
 
     // Log

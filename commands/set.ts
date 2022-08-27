@@ -8,7 +8,7 @@ export = async (args: string[], { helper }: { helper: JobHelper }) => {
     if (!groupDotKey) return $.logErrorAndExit(`"group.key" kind of query is required`);
     if (!value) return $.logErrorAndExit("value is required");
 
-    // Get DbConfig Class
+    // Get DbConfigDriver Class
     const dbConfig = getActiveDbConfig($);
     const query = ConvertGroupDotKeyToObject([groupDotKey])[0];
     const config = await dbConfig.get(query);

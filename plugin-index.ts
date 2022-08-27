@@ -1,13 +1,18 @@
-import {DollarSign} from "xpresser/types";
-import {ConvertDbDataToObject, ConvertToDBData, ConvertToGroupDotKeyArray, getActiveDbConfig} from "./src/functions";
-import {DBConfiguration} from "./src/custom-types";
+import { DollarSign } from "xpresser/types";
+import {
+    ConvertDbDataToObject,
+    ConvertToDBData,
+    ConvertToGroupDotKeyArray,
+    getActiveDbConfig
+} from "./src/functions";
+import { DBConfiguration } from "./src/custom-types";
 
 /**
  * Xpresser runs this function before $.on.boot
  * after $.on.boot
  */
 
-export async function run({namespace}: any, $: DollarSign) {
+export async function run({ namespace }: any, $: DollarSign) {
     /**
      * Don't initialize plugin if is NativeCommands
      */
@@ -16,22 +21,33 @@ export async function run({namespace}: any, $: DollarSign) {
     /**
      * Check if required config paths is defined.
      */
-    const dbConfigFile = $.config.get("paths.dbConfig");
-    if (!dbConfigFile)
+    const paths = $.config.get("paths");
+
+    if (!paths.dbConfig)
         return $.logErrorAndExit(`${namespace}: Config {paths.dbConfig} is missing.`);
 
-    const dbConfigClassFile = $.config.get("paths.dbConfigClass");
-    if (!dbConfigClassFile)
+    if (!paths.dbConfigClass)
         return $.logErrorAndExit(`${namespace}: Config {paths.dbConfigClass} is missing.`);
+
+    $.ifIsConsole(() => {
+        const isBackupCommand = process.argv[process.argv.length - 1] === "dbc:backup";
+
+        if (isBackupCommand) {
+            if (!paths.dbConfigBackupFolder)
+                return $.logErrorAndExit(
+                    `${namespace}: Config {paths.dbConfigBackupFolder} is missing.`
+                );
+        }
+    });
 
     /**
      * Process On Boot
-     * 1. Load & Save Custom DbConfig
+     * 1. Load & Save Custom DbConfigDriver
      */
 
-    // Load Custom DbConfig
+    // Load Custom DbConfigDriver
     try {
-        const resolvedDbConfigClassFile = $.path.resolve(dbConfigClassFile);
+        const resolvedDbConfigClassFile = $.path.resolve(paths.dbConfigClass);
         const CustomClass = require(resolvedDbConfigClassFile);
 
         if (!CustomClass) {
@@ -92,12 +108,9 @@ export async function run({namespace}: any, $: DollarSign) {
         if (definedConfigs.length !== dbConfigs.length) $.logWarning(message);
         else if (!definedConfigs.every((item) => dbConfigs.includes(item))) $.logWarning(message);
 
-
-
         $.ifNotConsole(() => {
-            $.logSuccess("AutoLoaded DbConfig successfully.");
+            $.logSuccess("AutoLoaded DbConfigDriver successfully.");
         });
-
 
         return next();
     });

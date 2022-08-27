@@ -2,11 +2,11 @@ import type { DBConfiguration, DBConfigurationFn, DbData, DbDataArray } from "./
 import kindOf from "kind-of";
 import { Obj } from "object-collection/exports";
 import type { DollarSign } from "xpresser/types";
-import type { DbConfig } from "./db-config";
+import type { DbConfigDriver } from "./db-config";
 import { DbConfigMeta } from "./DbConfigMeta";
 
 /**
- * Define DbConfig Wrapper function
+ * Define DbConfigDriver Wrapper function
  * @param config
  */
 export function defineDbConfig<Meta = any>(config: DBConfigurationFn<Meta> | DBConfiguration) {
@@ -14,11 +14,11 @@ export function defineDbConfig<Meta = any>(config: DBConfigurationFn<Meta> | DBC
 }
 
 /**
- * Get Current Custom DbConfig
+ * Get Current Custom DbConfigDriver
  * @param $
  */
 export function getActiveDbConfig($: DollarSign) {
-    return $.engineData.get("DbConfigClass") as typeof DbConfig;
+    return $.engineData.get("DbConfigClass") as DbConfigDriver;
 }
 
 /**s
