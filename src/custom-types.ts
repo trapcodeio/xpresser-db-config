@@ -16,7 +16,7 @@ export type DbData<M = any> = {
     group?: string;
     key: string;
     value: any;
-    type: string;
+    type: string[];
     autoload?: boolean;
     meta?: M;
 };

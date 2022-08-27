@@ -40,6 +40,12 @@ export = defineDbConfig<Meta>(({ v }) => {
                 })
             },
             autoload: false
+        },
+        {
+            group: "test",
+            config: {
+                updatedAt: v(undefined).type(["date", "undefined"])
+            }
         }
     ];
 });

@@ -1,12 +1,13 @@
-import { DollarSign } from "xpresser/types";
-import { ConvertDbDataToObject, getActiveDbConfig } from "./src/functions";
+import {DollarSign} from "xpresser/types";
+import {ConvertDbDataToObject, ConvertToDBData, ConvertToGroupDotKeyArray, getActiveDbConfig} from "./src/functions";
+import {DBConfiguration} from "./src/custom-types";
 
 /**
  * Xpresser runs this function before $.on.boot
  * after $.on.boot
  */
 
-export async function run({ namespace }: any, $: DollarSign) {
+export async function run({namespace}: any, $: DollarSign) {
     /**
      * Don't initialize plugin if is NativeCommands
      */
@@ -69,9 +70,34 @@ export async function run({ namespace }: any, $: DollarSign) {
         $.engineData.set("AutoLoadedDbConfigRaw", autoLoaded);
         $.engineData.set("AutoLoadedDbConfig", ConvertDbDataToObject(autoLoaded));
 
+        /**
+         * Check for changes in db config
+         */
+        let dbConfigFile = $.config.get("paths.dbConfig");
+        /**
+         * Try loading db config file.
+         */
+        let dbConfig: DBConfiguration = [];
+        try {
+            dbConfig = require($.path.resolve(dbConfigFile));
+        } catch (e: any) {
+            return $.logErrorAndExit(e.message);
+        }
+
+        const definedConfigs = ConvertToGroupDotKeyArray(ConvertToDBData(dbConfig));
+        const dbConfigs = await CustomDbConfig.groupDotKeyArray();
+
+        // if both arrays does not have same items then there are changes
+        const message = `db-config has been updated. Run "xjs dbc:migrate" to update.`;
+        if (definedConfigs.length !== dbConfigs.length) $.logWarning(message);
+        else if (!definedConfigs.every((item) => dbConfigs.includes(item))) $.logWarning(message);
+
+
+
         $.ifNotConsole(() => {
             $.logSuccess("AutoLoaded DbConfig successfully.");
         });
+
 
         return next();
     });

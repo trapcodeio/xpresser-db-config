@@ -17,7 +17,9 @@ export = async (args: string[], { helper }: { helper: JobHelper }) => {
 
     const allowedTypes = ["string", "number", "boolean"];
     if (!allowedTypes.includes(config.type)) {
-        return $.logErrorAndExit(`Config: "${groupDotKey}" must be type of ${allowedTypes.join(", ")}!`);
+        return $.logErrorAndExit(
+            `Config: "${groupDotKey}" must be type of ${allowedTypes.join(", ")}!`
+        );
     }
 
     if (config.type === "string") {
@@ -30,7 +32,6 @@ export = async (args: string[], { helper }: { helper: JobHelper }) => {
 
     // Set value
     await dbConfig.set(query, config.value);
-
     $.logSuccess(`Config: "${groupDotKey}" set to`, config.value);
 
     helper.end(true);

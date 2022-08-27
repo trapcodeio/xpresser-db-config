@@ -9,7 +9,7 @@ class ConfigModel extends XMongoModel {
         group: is.String().optional(),
         key: is.String().required(),
         value: is.Any().required(),
-        type: is.String().optional(),
+        type: is.Types([is.String(), is.Array()]).optional(),
         meta: is.Object().optional(),
         autoload: is.Boolean().optional()
     };

@@ -1,4 +1,4 @@
-import type { DBConfiguration, DBConfigurationFn, DbDataArray } from "./custom-types";
+import type { DBConfiguration, DBConfigurationFn, DbData, DbDataArray } from "./custom-types";
 import kindOf from "kind-of";
 import { Obj } from "object-collection/exports";
 import type { DollarSign } from "xpresser/types";
@@ -21,7 +21,7 @@ export function getActiveDbConfig($: DollarSign) {
     return $.engineData.get("DbConfigClass") as typeof DbConfig;
 }
 
-/**
+/**s
  *
  * @param configs
  * @constructor
@@ -37,23 +37,26 @@ export function ConvertToDBData(configs: DBConfiguration) {
         const entries = Object.entries(children);
 
         for (const [key, value] of entries) {
-            if (value instanceof DbConfigMeta && value.meta) {
+            if (value instanceof DbConfigMeta) {
                 // noinspection PointlessBooleanExpressionJS
-                dbData.push({
+                const data: DbData = {
                     group,
                     key,
                     value: value.value,
-                    type: kindOf(value.value),
-                    meta: value.meta,
+                    type: value.customContext.type || [kindOf(value.value)],
                     autoload: !!autoload
-                });
+                };
+
+                if (value.meta) data.meta = value.meta;
+
+                dbData.push(data);
             } else {
                 // noinspection PointlessBooleanExpressionJS
                 dbData.push({
                     group,
                     key,
                     value,
-                    type: kindOf(value),
+                    type: [kindOf(value)],
                     autoload: !!autoload
                 });
             }
@@ -119,28 +122,3 @@ export function ConvertGroupDotKeyToObject(groupDotKey: string[]) {
 
     return groupKey;
 }
-
-/**
- * Load db config file
- */
-// export function loadDbConfigFile($: DollarSign) {
-//     let dbConfigFile = $.config.get("paths.dbConfig");
-//     const CustomDbConfig = $.engineData.get("DbConfig") as typeof DbConfig;
-//
-//     /**
-//      * Resolve paths just in-case a smart path is used
-//      * e.g. backend://, base:// e.t.c
-//      */
-//     dbConfigFile = $.path.resolve(dbConfigFile);
-//
-//
-//     /**
-//      * Try loading db config file.
-//      */
-//     try {
-//         dbConfig = dbConfig.concat(require(dbConfigFile));
-//     } catch (e: any) {
-//         return $.logErrorAndExit(e.message);
-//     }
-//
-// }

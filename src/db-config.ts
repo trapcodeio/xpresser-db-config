@@ -4,40 +4,58 @@ import type { DbDataArray } from "./custom-types";
 
 export type GetConfigQuery = { group?: string; key: string };
 
-export class DbConfig {
+export declare class DbConfig {
     /**
      * AutoLoaded Data Getter.
      */
-    static async autoLoadedConfig(): Promise<any | undefined> {
-        return undefined;
-    }
+    static autoLoadedConfig(): Promise<any | undefined>;
 
-    static async add(data: DbDataArray): Promise<number | undefined> {
-        // save to your db
-        return undefined;
-    }
+    /**
+     * Add Config
+     * @param data
+     */
+    static add(data: DbDataArray): Promise<number | undefined>;
 
-    static async get<R = any>(query: GetConfigQuery): Promise<R | undefined> {
-        return undefined;
-    }
+    /**
+     * Get Config
+     * @param query
+     */
+    static get<R = any>(query: GetConfigQuery): Promise<R | undefined>;
 
-    static async set(query: GetConfigQuery, value: any): Promise<any> {
-        return undefined;
-    }
+    /**
+     * Get all
+     */
+    static getAll(): Promise<DbDataArray>;
 
-    static async group<R = any>(group: string, keys?: string[]): Promise<Array<R> | undefined> {
-        return [];
-    }
+    /**
+     * Set Config
+     * @param query
+     * @param value
+     */
+    static set(query: GetConfigQuery, value: any): Promise<any>;
 
-    static delete(query: GetConfigQuery | GetConfigQuery[]): Promise<any> {
-        return undefined as any;
-    }
+    /**
+     * Get Config Group
+     */
+    static group<R = any>(group: string, keys?: string[]): Promise<Array<R> | undefined>;
 
-    static async deleteAll(): Promise<any> {
-        return undefined;
-    }
+    /**
+     * Delete Config
+     * @param query
+     */
+    static delete(query: GetConfigQuery | GetConfigQuery[]): Promise<any>;
 
-    static async groupDotKeyArray(): Promise<string[]> {
-        return [];
-    }
+    /**
+     * Delete All
+     */
+    static deleteAll(): Promise<any>;
+
+    /**
+     * Get Group key Map
+     */
+    static groupDotKeyArray(): Promise<string[]>;
 }
+
+// export function DbConfig(config: DbConfig){
+//     return config;
+// }

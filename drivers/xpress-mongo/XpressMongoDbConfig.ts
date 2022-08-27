@@ -1,9 +1,8 @@
 import { DbConfig, GetConfigQuery } from "../../src/db-config";
 import type { DbDataArray } from "../../src/custom-types";
 import ConfigModel from "./ConfigModel";
-import kindOf from "kind-of";
 
-class XpressMongoDbConfig extends DbConfig {
+class XpressMongoDbConfig implements DbConfig {
     /**
      * Get AutoLoaded Data
      */
@@ -57,7 +56,7 @@ class XpressMongoDbConfig extends DbConfig {
      */
     static async set(query: GetConfigQuery, value: any) {
         return ConfigModel.native().findOneAndUpdate(query, {
-            $set: { value, type: kindOf(value) }
+            $set: { value }
         });
     }
 
@@ -91,13 +90,17 @@ class XpressMongoDbConfig extends DbConfig {
     }
 
     /**
+     * Get all configs
+     */
+    static async getAll() {
+        return await ConfigModel.find({ group: { $ne: "__system__" } }, { projection: { _id: 0 } });
+    }
+
+    /**
      * Get Group key Map
      */
     static async groupDotKeyArray() {
-        const configs = await ConfigModel.find(
-            { group: { $ne: "__system__" } },
-            { projection: { _id: 0, group: 1, key: 1 } }
-        );
+        const configs = await this.getAll();
 
         return configs.map((c) => (c.group ? `${c.group}.${c.key}` : c.key));
     }
