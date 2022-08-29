@@ -30,7 +30,8 @@ export async function run({ namespace }: any, $: DollarSign) {
         return $.logErrorAndExit(`${namespace}: Config {paths.dbConfigClass} is missing.`);
 
     $.ifIsConsole(() => {
-        const isBackupCommand = process.argv[process.argv.length - 1] === "dbc:backup";
+        const isBackupCommand =
+            process.argv.includes("dbc:backup") || process.argv.includes("dbc:restore");
 
         if (isBackupCommand) {
             if (!paths.dbConfigBackupFolder)
