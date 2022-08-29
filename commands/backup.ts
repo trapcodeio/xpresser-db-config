@@ -8,7 +8,13 @@ export = async (args: string[], { helper }: { helper: JobHelper }) => {
     $.file.makeDirIfNotExist(backupFolder);
 
     const CustomDbConfig = getActiveDbConfig($);
-    const all = await CustomDbConfig.getAll();
+
+    // backup only
+    const all = (await CustomDbConfig.getAll()).map((item) => ({
+        group: item.group,
+        key: item.key,
+        value: item.value
+    }));
 
     // const now = new Date();
 
@@ -22,7 +28,8 @@ export = async (args: string[], { helper }: { helper: JobHelper }) => {
         checkIfFileExists: false
     });
 
-    $.logSuccess(`Db config backed up to ${file}`);
+    $.logSuccess(`Db config backed up to:`);
+    $.logSuccess(file);
 
     helper.end(true);
 };

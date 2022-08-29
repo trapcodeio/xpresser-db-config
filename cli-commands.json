@@ -23,5 +23,10 @@
     "command": "dbc:backup",
     "description": "Backup database configurations.",
     "file": "backup.js"
+  },
+  {
+    "command": "dbc:restore",
+    "description": "Restore database configurations.",
+    "file": "restore.js"
   }
 ]
