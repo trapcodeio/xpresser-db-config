@@ -28,7 +28,7 @@ export = async (args: string[], { helper }: { helper: JobHelper }) => {
         checkIfFileExists: false
     });
 
-    $.logSuccess(`Db config backed up to:`);
+    $.logSuccess(`Db config BACKED UP to:`);
     $.logSuccess(file);
 
     helper.end(true);
