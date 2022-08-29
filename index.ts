@@ -35,6 +35,15 @@ export function autoLoadedConfig<R = any>(id: string, def?: R): R {
 }
 
 /**
+ * Refresh autoloaded config
+ */
+export async function refreshAutoLoadedConfig() {
+    const autoLoaded = await activeDbConfig.autoLoadedConfig();
+    $.engineData.set("AutoLoadedDbConfigRaw", autoLoaded);
+    $.engineData.set("AutoLoadedDbConfig", ConvertDbDataToObject(autoLoaded));
+}
+
+/**
  * Get all auto-loaded config data as a collection
  */
 export function autoLoadedConfigAsCollection() {
@@ -114,8 +123,9 @@ export async function setConfig(id: string, value: any) {
  * Set Many config values.
  */
 export async function setManyConfig(many: ConfigData[] | Record<string, any>) {
+    let modifiedCount = 0;
     if (Array.isArray(many)) {
-        return activeDbConfig.setMany(many);
+        modifiedCount = await activeDbConfig.setMany(many);
     } else {
         const data: ConfigData[] = [];
 
@@ -125,8 +135,14 @@ export async function setManyConfig(many: ConfigData[] | Record<string, any>) {
                 value: many[key]
             });
         }
-        return activeDbConfig.setMany(data);
+
+        modifiedCount = await activeDbConfig.setMany(data);
     }
+
+    // Refresh auto loaded data
+    await refreshAutoLoadedConfig();
+
+    return modifiedCount;
 }
 
 /**
