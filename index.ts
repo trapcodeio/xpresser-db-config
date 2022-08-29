@@ -5,7 +5,7 @@ import { getInstance } from "xpresser";
 import { Obj } from "object-collection/exports";
 import { GetConfigQuery } from "./src/db-config";
 import { ConvertDbDataToObject, getActiveDbConfig } from "./src/functions";
-import type { DbData } from "./src/custom-types";
+import type { ConfigData, DbData } from "./src/custom-types";
 
 const $ = getInstance();
 
@@ -107,6 +107,25 @@ export async function setConfig(id: string, value: any) {
     // if auto loaded data has id, update value.
     if (lodash.has(autoLoaded.sync, id)) {
         lodash.set(autoLoaded.sync, id, value);
+    }
+}
+
+/**
+ * Set Many config values.
+ */
+export async function setManyConfig(many: ConfigData[] | Record<string, any>) {
+    if (Array.isArray(many)) {
+        return activeDbConfig.setMany(many);
+    } else {
+        const data: ConfigData[] = [];
+
+        for (const key in many) {
+            data.push({
+                ...makeConfigQuery(key),
+                value: many[key]
+            });
+        }
+        return activeDbConfig.setMany(data);
     }
 }
 

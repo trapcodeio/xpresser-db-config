@@ -12,10 +12,13 @@ export type DBConfigurationFnContext<M = any> = {
 
 export type DBConfigurationFn<M> = (ctx: DBConfigurationFnContext<M>) => DBConfiguration;
 
-export type DbData<M = any> = {
+export type ConfigData = {
     group?: string;
     key: string;
     value: any;
+};
+
+export type DbData<M = any> = ConfigData & {
     type: string[];
     autoload?: boolean;
     meta?: M;

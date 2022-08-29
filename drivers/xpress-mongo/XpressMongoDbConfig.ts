@@ -1,6 +1,7 @@
 import { DbConfigDriver, GetConfigQuery } from "../../src/db-config";
 import type { DbDataArray } from "../../src/custom-types";
 import ConfigModel from "./ConfigModel";
+import { ConfigData } from "../../src/custom-types";
 
 export = DbConfigDriver({
     /**
@@ -58,6 +59,34 @@ export = DbConfigDriver({
         return ConfigModel.native().findOneAndUpdate(query, {
             $set: { value }
         });
+    },
+
+    /**
+     * Set Many Config
+     * @param data
+     */
+    async setMany(data: ConfigData[]) {
+        let set = 0;
+
+        // generate bulk update query.
+        const bulkWriteQuery = data.map((i) => {
+            const filter = i.group ? { group: i.group, key: i.key } : { key: i.key };
+
+            return {
+                updateOne: {
+                    filter,
+                    update: { $set: { value: i.value } }
+                }
+            };
+        });
+
+        // execute bulk update.
+        if (bulkWriteQuery.length) {
+            const result = await ConfigModel.native().bulkWrite(bulkWriteQuery);
+            set = result.modifiedCount;
+        }
+
+        return set;
     },
 
     /**

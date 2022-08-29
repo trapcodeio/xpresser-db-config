@@ -1,10 +1,11 @@
 import type JobHelper from "xpresser/src/Console/JobHelper";
 import { getActiveDbConfig } from "../src/functions";
-import { DbData } from "../src/custom-types";
+import { ConfigData } from "../src/custom-types";
 
 export = async (args: string[], { helper }: { helper: JobHelper }) => {
     const $ = helper.$;
-    let file = args[0] || "db-config-backup.json";
+    let file = args[0] || "db-config-backup";
+    file = file + ".json";
 
     const backupFolder = $.path.resolve($.config.get("paths.dbConfigBackupFolder"));
     file = $.path.resolve([backupFolder, file]);
@@ -20,15 +21,12 @@ export = async (args: string[], { helper }: { helper: JobHelper }) => {
         return $.logErrorAndExit(`Database must be migrated before restoring.`);
     }
 
-    const fileContent = $.file.readJson(file) as Pick<DbData, "group" | "key" | "value">[];
+    const fileContent = $.file.readJson(file) as ConfigData[];
 
-    for (const config of fileContent) {
-        const { group, key, value } = config;
-        await DbConfig.set({ group, key }, value);
-        console.log(`${group}.${key} =>`, value);
-    }
+    // set many
+    const modifiedCount = await DbConfig.setMany(fileContent);
 
-    $.logSuccess(`Db config RESTORED from:`);
+    $.logSuccess(`(${modifiedCount}/${fileContent.length}) configs RESTORED from:`);
     $.logSuccess(file);
 
     helper.end(true);

@@ -1,6 +1,6 @@
 // noinspection JSUnusedLocalSymbols
 
-import type { DbDataArray } from "./custom-types";
+import type { ConfigData, DbDataArray } from "./custom-types";
 
 export type GetConfigQuery = { group?: string; key: string };
 
@@ -14,7 +14,7 @@ export interface DbConfigDriver {
      * Add Config
      * @param data
      */
-    add(data: DbDataArray): Promise<number | undefined>;
+    add(data: DbDataArray): Promise<number>;
 
     /**
      * Get Config
@@ -33,6 +33,12 @@ export interface DbConfigDriver {
      * @param value
      */
     set(query: GetConfigQuery, value: any): Promise<any>;
+
+    /**
+     * Set Many Config
+     * @param data
+     */
+    setMany(data: ConfigData[]): Promise<number>;
 
     /**
      * Get Config Group
