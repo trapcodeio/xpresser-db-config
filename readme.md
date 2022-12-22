@@ -29,13 +29,13 @@ module.exports = [
   },
   // Grouped configs
   {
-    group: "app",
+    group: 'app',
     config: {
-      name: "App Name",
-      slogan: "App slogan"
+      name: 'App Name',
+      slogan: 'App slogan',
     },
     autoload: true,
-  }
+  },
 ];
 
 /// Will be saved to memory as.
@@ -44,19 +44,19 @@ module.exports = [
   backup: true,
   cronjobs: false,
   app: {
-    name: "App Name",
-    slogan: "App slogan"
-  }
+    name: 'App Name',
+    slogan: 'App slogan',
+  },
 });
 
 /// Will be stored to your configured db as
 [
-  {key: "allowLogin", value: true, type: "boolean", autoload: true, ...},
-  {key: "backup", value: true, type: "boolean", autoload: true, ...},
-  {key: "cronjobs", value: false, type: "boolean", autoload: true, ...},
-  {group: "app", key: "key", value: "App Name", type: "string", autoload: true, ...},
-  {group: "app", key: "slogan", value: "App Slogan", type: "string", autoload: true, ...},
-]
+  {key: 'allowLogin', value: true, type: 'boolean', autoload: true, ...},
+  {key: 'backup', value: true, type: 'boolean', autoload: true, ...},
+  {key: 'cronjobs', value: false, type: 'boolean', autoload: true, ...},
+  {group: 'app', key: 'key', value: 'App Name', type: 'string', autoload: true, ...},
+  {group: 'app', key: 'slogan', value: 'App Slogan', type: 'string', autoload: true, ...},
+];
 ```
 
 ### Getting/Setting configuration
