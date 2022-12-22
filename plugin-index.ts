@@ -97,6 +97,10 @@ export async function run({ namespace }: any, $: DollarSign) {
         let dbConfig: DBConfiguration = [];
         try {
             dbConfig = require($.path.resolve(dbConfigFile));
+            // check if dbConfig is object and has default key.
+            if (!Array.isArray(dbConfig) && typeof dbConfig === "object" && dbConfig["default"]) {
+                dbConfig = dbConfig["default"];
+            }
         } catch (e: any) {
             return $.logErrorAndExit(e.message);
         }
