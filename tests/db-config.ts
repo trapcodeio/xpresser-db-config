@@ -42,6 +42,12 @@ export = defineDbConfig<Meta>(({ v }) => {
             autoload: false
         },
         {
+            autoload: true,
+            config: {
+                refreshClient: "2021-01-01"
+            }
+        },
+        {
             group: "test",
             config: {
                 updatedAt: v(undefined).type(["date", "undefined"])

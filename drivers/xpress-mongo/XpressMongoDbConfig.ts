@@ -16,7 +16,7 @@ export = DbConfigDriver({
      * @param data
      */
     async add(data: DbDataArray) {
-        const all: { group: string; key: string }[] = await ConfigModel.find(
+        const all: { group: string | null; key: string }[] = await ConfigModel.find(
             {},
             { projection: { _id: 0, group: 1, key: 1 } }
         );
@@ -25,7 +25,8 @@ export = DbConfigDriver({
 
         for (const i of data) {
             // Check if config already exists
-            if (all.some((a) => a.group === i.group && a.key === i.key)) continue;
+            if (i.group && all.some((a) => a.group === i.group && a.key === i.key)) continue;
+            else if (!i.group && all.some((a) => a.key === i.key)) continue;
 
             // push new data.
             newData.push(i);
