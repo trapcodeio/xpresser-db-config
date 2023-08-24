@@ -69,3 +69,111 @@ await getConfig('app.slogan'); // App Slogan
 
 await setConfig('app.name', "New Name");
 ```
+
+
+##  Setup
+Install `xpresser-db-config`
+
+```bash
+npm i xpresser-db-config
+# or
+yarn add xpresser-db-config
+```
+
+Add to your `plugins.json` before other plugins.
+**Note:** If you have a plugin that initializes database connection used by the db-config, add this plugin after it.
+
+```json
+{
+  "npm://xpresser-db-config": true
+}
+```
+
+Add to your xpresser `config`.
+
+```js
+({
+    paths: {
+        // db-config declaration file
+        dbConfig: "backend://db-config",
+        // db-config driver
+        dbConfigClass: "npm://xpresser-db-config/drivers/xpress-mongo/XpressMongoDbConfig",
+        // db-config backup folder
+        dbConfigBackupFolder: "base://storage/db-config-backup",
+    }
+})
+```
+
+Create `db-config.(js|ts)` file in your `backend` folder.
+
+```ts
+import { defineDbConfig } from "xpresser-db-config/src/functions";
+
+type Meta = {
+    title: string;
+    desc: string;
+    example?: any;
+    options?: Record<any, any>;
+};
+
+export = defineDbConfig<Meta>(({ v }) => {
+    return [
+        {
+            // Active Providers Config
+            group: "app",
+            autoload: true,
+            config: {
+                name: "My App Name",
+
+                // Value with meta
+                slogan: v("We are the best", {
+                    title: "Slogan",
+                    desc: "This is the slogan of our app"
+                })
+            }
+        }
+    ];
+});
+```
+
+Add `extensions` to your `use-xjs-cli.json` file.
+
+```json
+{
+  "extensions": [
+    "npm://xpresser-db-config"
+  ]
+}
+```
+
+The setup is complete!. 
+Next, we need to migrate our configs to the database.
+Run the command below to migrate configs.
+
+```bash
+npx xjs dbc:migrate
+```
+
+Other commands are below.
+
+## Commands
+
+```bash
+# Migrate configs to database
+npx xjs dbc:migrate
+
+# Find config
+npx dbc:find <query> [format] 
+
+# Set config
+npx dbc:set <key> <value>
+
+# Reset config
+npx dbc:reset
+
+# Backup configs
+npx dbc:backup
+
+# Restore configs
+npx dbc:restore <file>
+```

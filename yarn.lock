@@ -444,10 +444,10 @@ color-name@~1.1.4:
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
-commander@^8.3.0:
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-8.3.0.tgz#4837ea1b2da67b9c616a67afbb0fafee567bca66"
-  integrity sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==
+commander@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-11.0.0.tgz#43e19c25dbedc8256203538e8d7e9346877a6f67"
+  integrity sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -499,12 +499,12 @@ create-require@^1.1.0:
   resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
   integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
 
-cron@^1.8.2:
-  version "1.8.2"
-  resolved "https://registry.yarnpkg.com/cron/-/cron-1.8.2.tgz#4ac5e3c55ba8c163d84f3407bde94632da8370ce"
-  integrity sha512-Gk2c4y6xKEO8FSAUTklqtfSr7oTq0CiPQeLBG5Fl0qoXpZyMcj1SG59YL+hqq04bu6/IuEA7lMkYDAplQNKkyg==
+cron@^2.3.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/cron/-/cron-2.4.1.tgz#90000398576beb3787339a1b3131f336aed10771"
+  integrity sha512-ty0hUSPuENwDtIShDFxUxWEIsqiu2vhoFtt6Vwrbg4lHGtJX2/cV2p0hH6/qaEM9Pj+i6mQoau48BO5wBpkP4w==
   dependencies:
-    moment-timezone "^0.5.x"
+    luxon "^3.2.1"
 
 debug@2.6.9:
   version "2.6.9"
@@ -952,6 +952,11 @@ log-symbols@^4.1.0:
     chalk "^4.1.0"
     is-unicode-supported "^0.1.0"
 
+luxon@^3.2.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.4.1.tgz#9147374b2c539e7893f906c420e9b080b59c5457"
+  integrity sha512-2USspxOCXWGIKHwuQ9XElxPPYrDOJHDQ5DQ870CoD+CxJbBnRDIBCfhioUJJjct7BKOy80Ia8cVstIcIMb/0+Q==
+
 make-error@^1.1.1:
   version "1.3.6"
   resolved "https://registry.yarnpkg.com/make-error/-/make-error-1.3.6.tgz#2eb2e37ea9b67c4891f684a1394799af484cf7a2"
@@ -1040,18 +1045,6 @@ moment-timezone@^0.5.40:
   dependencies:
     moment "^2.29.4"
 
-moment-timezone@^0.5.x:
-  version "0.5.33"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.33.tgz#b252fd6bb57f341c9b59a5ab61a8e51a73bbd22c"
-  integrity sha512-PTc2vcT8K9J5/9rDEPe5czSIKgLoGsH8UNpA4qZTVw0Vd/Uz19geE9abbIOQKaAQFcnQ3v5YEXrbSc5BpshH+w==
-  dependencies:
-    moment ">= 2.9.0"
-
-"moment@>= 2.9.0":
-  version "2.29.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
-  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
-
 moment@^2.29.4:
   version "2.29.4"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
@@ -1111,14 +1104,6 @@ object-assign@^4:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
   integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
-
-object-collection@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/object-collection/-/object-collection-3.0.0.tgz#f72a80e05c00acfa2e448af9b9d5a86e8dfdf82f"
-  integrity sha512-SbpyYuSWEOAW3hbJ8qrsiRit4lJ/UM8BS0Nlg2R3gWzxUPF2PlCKrOZ6L41ZJiq8OeajK0XIvT5G4AFL5HVvoQ==
-  dependencies:
-    "@types/lodash" "^4.14.178"
-    lodash "^4.17.21"
 
 object-collection@^3.0.1:
   version "3.0.1"
@@ -1209,10 +1194,10 @@ pluralize@^8.0.0:
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-8.0.0.tgz#1a6fa16a38d12a1901e0320fa017051c539ce3b1"
   integrity sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==
 
-prettier@^2.8.8:
-  version "2.8.8"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
-  integrity sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==
+prettier@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.0.2.tgz#78fcecd6d870551aa5547437cdae39d4701dca5b"
+  integrity sha512-o2YR9qtniXvwEZlOKbveKfDQVyqxbEIWn48Z8m3ZJjBjcCmUy3xZGIv+7AkaeuaTr6yPXJjwv07ZWlsWbEy1rQ==
 
 proxy-addr@~2.0.7:
   version "2.0.7"
@@ -1568,10 +1553,10 @@ type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-typescript@^5.0.4:
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.0.4.tgz#b217fd20119bd61a94d4011274e0ab369058da3b"
-  integrity sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==
+typescript@^5.1.6:
+  version "5.1.6"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.1.6.tgz#02f8ac202b6dad2c0dd5e0913745b47a37998274"
+  integrity sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==
 
 uglify-js@^3.1.4:
   version "3.14.2"
@@ -1643,17 +1628,16 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
-xjs-cli@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/xjs-cli/-/xjs-cli-1.2.3.tgz#b0c3f5f13bb833f4a4dffc6b7c7c0ea7ad80341b"
-  integrity sha512-7kPJYaKa2c0JrxdsMbQlL3jThiCKEbU+pvihyVYKj68r4iLzesu9Ug0hXU+gDbA60vKmjbo9ij/3CCBx33B+Bw==
+xjs-cli@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/xjs-cli/-/xjs-cli-1.3.1.tgz#eeaf5a16941edb8b70e74eb77a381e828b6c3a44"
+  integrity sha512-cGeu+a7Tuq0q6KXszzOSKgljkY27REcMKC+a9FXjgtvMYRxGkkGpybg3eMTycSqVD0Ug3bH/WOJuTIvj2D987Q==
   dependencies:
     chalk "^4.1.2"
-    commander "^8.3.0"
-    cron "^1.8.2"
+    commander "^11.0.0"
+    cron "^2.3.1"
     inquirer "^8.2.0"
-    object-collection "^3.0.0"
-    shelljs "^0.8.5"
+    object-collection "^3.0.1"
 
 xpress-mongo@^2.12.1:
   version "2.12.1"
@@ -1667,10 +1651,10 @@ xpress-mongo@^2.12.1:
     object-collection "^3.0.1"
     uuid "^8.3.2"
 
-xpresser@^0.31.0:
-  version "0.31.0"
-  resolved "https://registry.yarnpkg.com/xpresser/-/xpresser-0.31.0.tgz#b7d173f9ff54b3f48756ee5c1986ae19de45cdd7"
-  integrity sha512-QKMmWvsLgGVyyYBuGn4c9RWaX10mb9KaCFdBmCKTEhBCKvPEUHR34s8H/zyXmutWye0YLmFBg7rwNOaXKPtq0w==
+xpresser@^0.31.1:
+  version "0.31.1"
+  resolved "https://registry.yarnpkg.com/xpresser/-/xpresser-0.31.1.tgz#b0fe8e4e69c9f7ac3ee06fd805704ecc477325c4"
+  integrity sha512-Wh+zWlIOOlf5fFLmpzl1xR0GGMnN1Du9P5+wUs4rj5A73uC7mKuZSL149/HOecNyJfcxd7ome++VMx/SrWUI0Q==
   dependencies:
     "@types/express" "^4.17.16"
     "@types/fs-extra" "^11.0.1"
